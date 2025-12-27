@@ -3,11 +3,13 @@
 import { useState } from 'react'
 import Navbar from '@/components/navbar'
 import HeroSection from '@/components/hero'
+import AssetTypesSection from '@/components/asset-types'
 import HowItWorksSection from '@/components/how-it-works'
 import StatsSection from '@/components/stats'
 import KnowledgeBase from '@/components/knowledge-base'
 import TestimonialsSection from '@/components/testimonials'
 import CTASection from '@/components/cta'
+import FAQSection from '@/components/faq'
 import Footer from '@/components/footer'
 import { Modal, ContactContent, TermsContent, PrivacyContent } from '@/components/modal'
 
@@ -19,11 +21,13 @@ export default function Home() {
       <Navbar />
       <main>
         <HeroSection />
+        <AssetTypesSection />
         <HowItWorksSection />
         <StatsSection />
         <KnowledgeBase />
         <TestimonialsSection />
         <CTASection />
+        <FAQSection />
       </main>
       <Footer onOpenModal={setActiveModal} />
       

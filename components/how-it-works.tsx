@@ -1,80 +1,85 @@
 'use client'
 
-import { UsersIcon, SearchIcon, FileTextIcon, BanknoteIcon, ZapIcon } from './icons'
+import { UsersIcon, SearchIcon, FileTextIcon, CheckCircleIcon } from './icons'
 
 export default function HowItWorksSection() {
   const steps = [
     {
-      step: '01',
-      title: 'Enter Your Info',
-      description: "Just your name, phone number and state — that's all we need to begin.",
+      step: 1,
+      title: 'Enter basic details',
+      description: 'Start with your name and contact details. Add PAN/UAN/folio/policy identifiers later if you have them.',
       icon: UsersIcon,
-      color: 'blue'
+      gradient: 'from-blue-500 to-indigo-600'
     },
     {
-      step: '02',
-      title: 'We Search All Databases',
-      description: 'Our system scans IEPF, SEBI, banks, insurers, and mutual fund registries simultaneously.',
+      step: 2,
+      title: 'We run a consolidated search',
+      description: (
+        <>
+          Unified scan across <strong>unclaimed shares</strong>, <strong>dividends</strong>, <strong>IEPF</strong>, <strong>bank accounts</strong>, <strong>FDs</strong>, <strong>mutual funds</strong>, <strong>EPF/PPF</strong>, and <strong>insurance</strong>.
+        </>
+      ),
       icon: SearchIcon,
-      color: 'indigo'
+      gradient: 'from-indigo-500 to-purple-600'
     },
     {
-      step: '03',
-      title: 'Get Complete Report',
-      description: 'Receive a consolidated report of unclaimed shares, MFs, deposits, insurance & FDs.',
+      step: 3,
+      title: 'Get one consolidated report',
+      description: 'Single report showing matches, confidence level, and likely category (shares/IEPF vs bank vs MF vs EPF vs insurance).',
       icon: FileTextIcon,
-      color: 'purple'
+      gradient: 'from-purple-500 to-pink-600'
     },
     {
-      step: '04',
-      title: 'Recover Your Wealth',
-      description: 'We assist you with documentation and guide you through the claim process.',
-      icon: BanknoteIcon,
-      color: 'green'
+      step: 4,
+      title: 'Recover with the right checklist',
+      description: (
+        <>
+          Practical checklist: what to verify, documents needed, and claim steps—especially for <strong>IEPF-5 claims</strong>.
+        </>
+      ),
+      icon: CheckCircleIcon,
+      gradient: 'from-emerald-500 to-teal-600'
     }
   ]
 
-  const colors: Record<string, string> = {
-    blue: 'bg-blue-100 text-blue-600',
-    indigo: 'bg-indigo-100 text-indigo-600',
-    purple: 'bg-purple-100 text-purple-600',
-    green: 'bg-green-100 text-green-600'
-  }
-
   return (
-    <section id="how-it-works" className="py-20 bg-white relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 grid-pattern opacity-50"></div>
-      
+    <section id="how-it-works" className="py-16 sm:py-20 relative overflow-hidden grid-pattern">
+      {/* Background Blobs */}
+      <div className="absolute top-0 left-1/3 w-[400px] h-[400px] bg-blue-200 rounded-full mix-blend-multiply blur-[120px] opacity-60 pulse-animation"></div>
+      <div className="absolute bottom-0 right-1/3 w-[400px] h-[400px] bg-purple-200 rounded-full mix-blend-multiply blur-[120px] opacity-60 pulse-animation" style={{animationDelay: '1s'}}></div>
+
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 rounded-full text-blue-600 text-sm font-semibold mb-4">
-            <ZapIcon className="w-4 h-4" />
-            Simple Process
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4">
-            How It Works
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-3">
+            How it works
           </h2>
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-slate-500 max-w-xl mx-auto">
             Four simple steps to recover your forgotten wealth
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Steps Grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
           {steps.map((item, index) => (
             <div key={index} className="relative group">
-              {/* Connector Line */}
+              {/* Connector line */}
               {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-12 left-full w-full h-0.5 bg-gradient-to-r from-slate-200 to-transparent z-0"></div>
+                <div className="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-slate-300 to-transparent z-0"></div>
               )}
-              
-              <div className="bg-slate-50 rounded-3xl p-8 h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative z-10">
-                <div className="text-5xl font-black text-slate-100 mb-4">{item.step}</div>
-                <div className={`w-14 h-14 ${colors[item.color]} rounded-2xl flex items-center justify-center mb-4`}>
-                  <item.icon className="w-7 h-7" />
+
+              <div className="relative bg-white rounded-2xl p-5 h-full shadow-lg border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                {/* Step number badge */}
+                <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center mb-4 shadow-lg`}>
+                  <span className="text-white font-bold">{item.step}</span>
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-2">{item.title}</h3>
-                <p className="text-slate-500">{item.description}</p>
+
+                <h3 className="text-lg font-bold text-slate-900 mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed [&_strong]:text-slate-900 [&_strong]:font-medium">
+                  {item.description}
+                </p>
               </div>
             </div>
           ))}
@@ -83,4 +88,3 @@ export default function HowItWorksSection() {
     </section>
   )
 }
-

@@ -11,17 +11,18 @@ export default function StatsSection() {
   ]
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-600 rounded-full mix-blend-multiply blur-[150px] opacity-20"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply blur-[150px] opacity-20"></div>
+    <section className="py-20 relative overflow-hidden grid-pattern">
+      {/* Background Blobs */}
+      <div className="absolute top-10 left-1/4 w-[500px] h-[500px] bg-blue-200 rounded-full mix-blend-multiply blur-[120px] opacity-60 pulse-animation"></div>
+      <div className="absolute bottom-10 right-1/4 w-[400px] h-[400px] bg-indigo-200 rounded-full mix-blend-multiply blur-[120px] opacity-60 pulse-animation" style={{animationDelay: '2s'}}></div>
+      <div className="absolute top-1/2 left-0 w-[300px] h-[300px] bg-purple-100 rounded-full mix-blend-multiply blur-[100px] opacity-50"></div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">
             The Forgotten Wealth of India
           </h2>
-          <p className="text-lg text-slate-400">
+          <p className="text-lg text-slate-500">
             Billions lying unclaimed across financial institutions — is some of it yours?
           </p>
         </div>
@@ -30,15 +31,15 @@ export default function StatsSection() {
           {stats.map((stat, index) => (
             <div 
               key={index}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 text-center hover:bg-white/10 transition-all"
+              className="bg-white rounded-2xl shadow-lg border border-slate-100 p-6 sm:p-8 text-center hover:shadow-xl hover:-translate-y-1 transition-all"
             >
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-500/20 rounded-xl mb-4">
-                <stat.Icon className="w-6 h-6 text-blue-400" />
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-xl mb-4">
+                <stat.Icon className="w-6 h-6 text-blue-600" />
               </div>
-              <div className="text-3xl sm:text-4xl font-extrabold text-white mb-2">
+              <div className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-2">
                 {stat.value}
               </div>
-              <div className="text-xs sm:text-sm font-semibold text-slate-400 uppercase tracking-wider">
+              <div className="text-xs sm:text-sm font-semibold text-slate-500 uppercase tracking-wider">
                 {stat.label}
               </div>
             </div>

@@ -1,130 +1,126 @@
 'use client'
 
-import { useState } from 'react'
-import { Building2Icon, TrendingUpIcon, LandmarkIcon, FileTextIcon, ChevronDownIcon, ArrowRightIcon, Share2Icon } from './icons'
+import { AlertCircleIcon, LandmarkIcon, LayersIcon, HeartHandshakeIcon, BriefcaseIcon } from './icons'
 
 export default function KnowledgeBase() {
-  const [expandedSection, setExpandedSection] = useState<string | null>(null)
-
-  const sections = [
-    {
-      id: 'founders',
-      title: "Founders' Wealth Recovery",
-      summary: 'How startup founders can reclaim equity from dissolved ventures.',
-      content: "When startups dissolve, equity often becomes trapped in complex cap tables and legal structures. Our platform helps founders trace their ownership stakes through IEPF filings, RoC records, and demat account histories. We've helped recover over ₹50 Cr for founders in the last year alone.",
-      Icon: Building2Icon
-    },
-    {
-      id: 'mutual-funds',
-      title: 'Mutual Fund Tracing',
-      summary: 'Locate forgotten SIPs and lump-sum investments across AMCs.',
-      content: "With over 44 Asset Management Companies in India, it's easy to lose track of old investments. Our MF tracing tool connects to CAMS and KFintech databases to surface dormant folios. Simply enter your PAN, and we'll show you every mutual fund unit registered to your name.",
-      Icon: TrendingUpIcon
-    },
-    {
-      id: 'dormant',
-      title: 'Dormant Bank Accounts',
-      summary: 'Reclaim funds from inactive savings and FD accounts.',
-      content: "RBI regulations require banks to transfer inactive accounts (10+ years) to the Depositor Education and Awareness Fund. But you can still claim these funds! Our system checks DEAF registries across all major banks and guides you through the reclamation process with pre-filled forms.",
-      Icon: LandmarkIcon
-    },
-    {
-      id: 'paper-trail',
-      title: 'Paper Trail Documentation',
-      summary: 'Essential documents needed for successful asset recovery.',
-      content: "Successful recovery requires proper documentation: Death certificates for deceased holders, legal heir certificates, succession certificates for disputed claims, and valid KYC documents. Our document checklist and verification system ensures you have everything before you file.",
-      Icon: FileTextIcon
-    }
+  const reasons = [
+    'Bank account changed / closed (NEFT/ECS failures)',
+    'Address mismatch or old KYC details',
+    'Multiple folios across time / different spellings of the same name',
+    'Joint holder issues (order of names, initials, signature mismatch)',
+    'Demat mapping issues after broker/DP change',
+    'Old physical shares / paper-era certificates not updated'
   ]
 
-  const toggleSection = (id: string) => {
-    setExpandedSection(expandedSection === id ? null : id)
-  }
-
   return (
-    <section id="resources" className="py-20 bg-slate-50 relative overflow-hidden">
-      {/* Side decorations */}
-      <div className="hidden lg:block absolute left-8 top-1/2 -translate-y-1/2">
-        <div className="space-y-4">
-          <div className="w-2 h-20 bg-blue-200 rounded-full"></div>
-          <div className="w-2 h-12 bg-indigo-200 rounded-full ml-2"></div>
-          <div className="w-2 h-16 bg-purple-200 rounded-full"></div>
-        </div>
-      </div>
-      <div className="hidden lg:block absolute right-8 top-1/2 -translate-y-1/2">
-        <div className="space-y-4">
-          <div className="w-2 h-16 bg-purple-200 rounded-full ml-2"></div>
-          <div className="w-2 h-20 bg-blue-200 rounded-full"></div>
-          <div className="w-2 h-12 bg-indigo-200 rounded-full ml-2"></div>
-        </div>
-      </div>
+    <section id="resources" className="py-20 relative overflow-hidden grid-pattern">
+      {/* Background Blobs */}
+      <div className="absolute top-20 left-1/3 w-[400px] h-[400px] bg-purple-200 rounded-full mix-blend-multiply blur-[120px] opacity-60 pulse-animation"></div>
+      <div className="absolute bottom-20 right-1/3 w-[400px] h-[400px] bg-blue-200 rounded-full mix-blend-multiply blur-[120px] opacity-60 pulse-animation" style={{animationDelay: '1.5s'}}></div>
+      <div className="absolute top-1/2 left-0 w-[250px] h-[250px] bg-indigo-100 rounded-full mix-blend-multiply blur-[100px] opacity-50"></div>
       
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-50 rounded-full text-indigo-600 text-sm font-semibold mb-4">
-            <FileTextIcon className="w-4 h-4" />
-            Knowledge Base
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">
-            Wealth Recovery 101
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-6">
+            Unclaimed shares &amp; dividend not received — common reasons
           </h2>
-          <p className="text-lg text-slate-500">
-            Everything you need to know about reclaiming your assets
+          <p className="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            Most &ldquo;<strong className="text-slate-900">dividend not received</strong>&rdquo; and &ldquo;<strong className="text-slate-900">unclaimed shares</strong>&rdquo; cases happen due to outdated records—not because the money isn&apos;t there.
           </p>
         </div>
 
-        <div className="space-y-4">
-          {sections.map((section) => (
-            <div 
-              key={section.id}
-              className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all border border-slate-100"
-            >
-              <button
-                onClick={() => toggleSection(section.id)}
-                className="w-full px-6 py-5 flex items-start gap-4 text-left"
-              >
-                <div className="flex-shrink-0 w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center">
-                  <section.Icon className="w-6 h-6 text-blue-600" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-lg font-bold text-slate-900 mb-1">
-                    {section.title}
-                  </h3>
-                  <p className="text-slate-500 text-sm">
-                    {section.summary}
-                  </p>
-                </div>
-                <ChevronDownIcon 
-                  className={`w-5 h-5 text-slate-400 flex-shrink-0 mt-1 transition-transform duration-300 ${
-                    expandedSection === section.id ? 'rotate-180' : ''
-                  }`}
-                />
-              </button>
-
-              <div className={`accordion-content ${expandedSection === section.id ? 'expanded' : ''}`}>
-                <div className="px-6 pb-6">
-                  <div className="pl-16">
-                    <p className="text-slate-600 mb-4 leading-relaxed">
-                      {section.content}
-                    </p>
-                    <div className="flex items-center gap-3">
-                      <button className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700 transition-colors">
-                        Read Guide
-                        <ArrowRightIcon className="w-4 h-4" />
-                      </button>
-                      <button className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 text-slate-700 rounded-lg font-semibold text-sm hover:bg-slate-200 transition-colors">
-                        <Share2Icon className="w-4 h-4" />
-                        Share
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        {/* Reasons Card */}
+        <div className="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 sm:p-10">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center">
+              <AlertCircleIcon className="w-5 h-5 text-amber-600" />
             </div>
-          ))}
+            <h3 className="text-xl font-bold text-slate-900">Common reasons (shares + dividends)</h3>
+          </div>
+
+          <ul className="space-y-4 mb-8">
+            {reasons.map((reason, index) => (
+              <li key={index} className="flex items-start gap-3">
+                <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-blue-600 font-bold text-sm">{index + 1}</span>
+                </div>
+                <span className="text-slate-700 leading-relaxed">{reason}</span>
+              </li>
+            ))}
+          </ul>
+
+          {/* Closing line */}
+          <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
+            <p className="text-slate-600 leading-relaxed">
+              If dividends remain unpaid/unclaimed for years, holdings can become harder to track. That&apos;s why discovery should cover <strong className="text-slate-900">company/RTA + IEPF search</strong> angles together.
+            </p>
+          </div>
+        </div>
+
+        {/* Other Unclaimed Assets Section */}
+        <div className="mt-20">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">
+              Where else unclaimed money is found
+            </h2>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-6">
+            {/* Bank accounts & deposits */}
+            <div className="bg-white rounded-2xl shadow-lg border border-slate-100 p-6 hover:shadow-xl transition-all">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center">
+                  <LandmarkIcon className="w-5 h-5 text-purple-600" />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900">Bank accounts &amp; deposits</h3>
+              </div>
+              <p className="text-slate-600 leading-relaxed">
+                Dormant or inactive accounts can happen when accounts aren&apos;t used for long periods or contact details change. Deposits and FDs are often forgotten after job changes, relocations, or older family investments.
+              </p>
+            </div>
+
+            {/* Mutual funds */}
+            <div className="bg-white rounded-2xl shadow-lg border border-slate-100 p-6 hover:shadow-xl transition-all">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-cyan-100 rounded-xl flex items-center justify-center">
+                  <LayersIcon className="w-5 h-5 text-cyan-600" />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900">Mutual funds</h3>
+              </div>
+              <p className="text-slate-600 leading-relaxed">
+                People commonly lose track of older folios due to changed addresses, multiple distributors, or switching phones/emails over time. Searching by name + identifiers helps unify folios.
+              </p>
+            </div>
+
+            {/* Insurance */}
+            <div className="bg-white rounded-2xl shadow-lg border border-slate-100 p-6 hover:shadow-xl transition-all">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-indigo-100 rounded-xl flex items-center justify-center">
+                  <HeartHandshakeIcon className="w-5 h-5 text-indigo-600" />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900">Insurance</h3>
+              </div>
+              <p className="text-slate-600 leading-relaxed">
+                Unclaimed insurance is common when policies were purchased decades ago or nominees/heirs don&apos;t have the policy paperwork.
+              </p>
+            </div>
+
+            {/* EPF / PF and PPF */}
+            <div className="bg-white rounded-2xl shadow-lg border border-slate-100 p-6 hover:shadow-xl transition-all">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-teal-100 rounded-xl flex items-center justify-center">
+                  <BriefcaseIcon className="w-5 h-5 text-teal-600" />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900">EPF / PF and PPF</h3>
+              </div>
+              <p className="text-slate-600 leading-relaxed">
+                EPF/PF and PPF can become &ldquo;forgotten&rdquo; when jobs change, details are mismatched, or documentation is missing. A discovery flow helps you identify what to verify next.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   )
 }
-

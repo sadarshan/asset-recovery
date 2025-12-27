@@ -25,8 +25,11 @@ export default function TestimonialsSection() {
   ]
 
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 relative overflow-hidden grid-pattern">
+      {/* Background Blobs */}
+      <div className="absolute top-10 right-1/4 w-[400px] h-[400px] bg-blue-200 rounded-full mix-blend-multiply blur-[120px] opacity-60 pulse-animation"></div>
+      <div className="absolute bottom-10 left-1/4 w-[500px] h-[500px] bg-indigo-200 rounded-full mix-blend-multiply blur-[120px] opacity-60 pulse-animation" style={{animationDelay: '2s'}}></div>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-green-50 rounded-full text-green-600 text-sm font-semibold mb-4">
             <UsersIcon className="w-4 h-4" />
@@ -42,7 +45,7 @@ export default function TestimonialsSection() {
 
         <div className="grid md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-slate-50 rounded-2xl p-8 hover:shadow-lg transition-all">
+            <div key={index} className="bg-white rounded-2xl shadow-lg border border-slate-100 p-8 hover:shadow-xl hover:-translate-y-1 transition-all">
               <div className="flex gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
                   <StarIcon key={i} className="w-5 h-5 text-amber-400 fill-amber-400" />

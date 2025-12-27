@@ -104,7 +104,7 @@ export default function HeroSection() {
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-100 rounded-full shadow-sm">
             <SparklesIcon className="w-4 h-4 text-blue-600" />
             <span className="text-blue-700 font-semibold text-sm">
-              Over ₹1.5 Lakh Crore Unclaimed
+              Unified financial asset recovery
             </span>
           </div>
         </div>
@@ -117,7 +117,7 @@ export default function HeroSection() {
 
         {/* Subtext */}
         <p className="text-lg sm:text-xl text-slate-500 text-center max-w-2xl mx-auto mb-12">
-          Crores in unclaimed shares, forgotten mutual funds, dormant bank accounts, unclaimed insurance and fixed deposits are waiting to be recovered. Start your free search today.
+        Search unclaimed shares, unpaid/unclaimed dividends (IEPF search), bank accounts, deposits/FDs, mutual funds, EPF/PPF and insurance—get one consolidated report with next steps.
         </p>
 
         {/* Search Widget */}

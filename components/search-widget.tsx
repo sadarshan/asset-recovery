@@ -112,7 +112,7 @@ export default function SearchWidget() {
       <div id="search" className="bg-white rounded-[2rem] shadow-2xl p-6 sm:p-8 max-w-2xl mx-auto top-border-gradient relative z-10 scroll-mt-24">
         {/* Header */}
         <div className="text-center mb-6">
-          <h3 className="text-xl font-bold text-slate-900 mb-1">Start Your Free Search</h3>
+          <h3 className="text-xl font-bold text-slate-900 mb-1">Start your free unclaimed asset search</h3>
           <p className="text-slate-500 text-sm">We&apos;ll search across shares, mutual funds, banking, insurance & FDs</p>
         </div>
 
@@ -178,25 +178,12 @@ export default function SearchWidget() {
               onChange={(e) => setState(e.target.value)}
               className="w-full px-4 py-3.5 bg-slate-50 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:ring-2 focus:ring-blue-500 transition-all appearance-none cursor-pointer"
             >
-              <option value="">Select State / UT *</option>
+              <option value="">Select State</option>
               {indianStates.map((s) => (
                 <option key={s} value={s}>{s}</option>
               ))}
             </select>
             <ChevronDownIcon className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 pointer-events-none" />
-          </div>
-
-          {/* What We Search */}
-          <div className="bg-slate-50 rounded-xl p-4">
-            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">We&apos;ll search across:</p>
-            <div className="flex flex-wrap gap-2">
-              {['Shares & Securities', 'Mutual Funds', 'Bank Deposits', 'Insurance', 'Fixed Deposits'].map((item) => (
-                <span key={item} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white rounded-lg text-sm text-slate-600 border border-slate-200">
-                  <CheckCircleIcon className="w-3.5 h-3.5 text-green-500" />
-                  {item}
-                </span>
-              ))}
-            </div>
           </div>
 
           <button 
@@ -215,10 +202,23 @@ export default function SearchWidget() {
             ) : (
               <>
                 <SearchIcon className="w-5 h-5" />
-                Start Recovery Search
+                Search Unclaimed Investments
               </>
             )}
           </button>
+
+          {/* What We Search */}
+          <div className="pt-4 flex flex-col items-center">
+            <p className="text-xs font-medium text-slate-400 uppercase tracking-wider mb-3">We search:</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
+              {['Unclaimed Shares', 'Unpaid Dividends', 'Forgotten Mutual Funds', 'Dormant Bank Accounts and FDs', 'Insurance', 'EPF / PF & PPF'].map((item) => (
+                <span key={item} className="inline-flex items-center gap-1.5 text-sm text-slate-500">
+                  <CheckCircleIcon className="w-3.5 h-3.5 text-green-500 flex-shrink-0" />
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
 
           {/* Error Message */}
           {error && (
