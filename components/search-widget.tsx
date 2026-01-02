@@ -46,7 +46,7 @@ export default function SearchWidget() {
     const cleaned = value.replace(/\D/g, '')
     if (cleaned.length > 10) return
     setPhone(cleaned)
-    
+
     if (cleaned.length === 0) {
       setPhoneError('')
     } else if (cleaned.length < 10) {
@@ -77,11 +77,10 @@ export default function SearchWidget() {
     if (lastName.trim()) {
       nameParts.push(lastName.trim())
     }
-    const investorName = nameParts.join(' ')
-
     const payload = {
       clone_id: 404,
-      investor_name: investorName,
+      investor_first_name: firstName,
+      investor_last_name: lastName,
       state: state
     }
 
@@ -156,9 +155,8 @@ export default function SearchWidget() {
                 value={formatPhone(phone)}
                 onChange={(e) => validatePhone(e.target.value)}
                 placeholder="Mobile Number *"
-                className={`w-full pl-24 pr-4 py-3.5 bg-slate-50 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:ring-2 transition-all ${
-                  phoneError ? 'ring-2 ring-red-400 focus:ring-red-400' : 'focus:ring-blue-500'
-                }`}
+                className={`w-full pl-24 pr-4 py-3.5 bg-slate-50 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:ring-2 transition-all ${phoneError ? 'ring-2 ring-red-400 focus:ring-red-400' : 'focus:ring-blue-500'
+                  }`}
               />
               {phone.length === 10 && !phoneError && (
                 <div className="absolute right-4 top-1/2 -translate-y-1/2">
@@ -173,7 +171,7 @@ export default function SearchWidget() {
 
           {/* State Dropdown */}
           <div className="relative">
-            <select 
+            <select
               value={state}
               onChange={(e) => setState(e.target.value)}
               className="w-full px-4 py-3.5 bg-slate-50 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:ring-2 focus:ring-blue-500 transition-all appearance-none cursor-pointer"
@@ -186,7 +184,7 @@ export default function SearchWidget() {
             <ChevronDownIcon className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 pointer-events-none" />
           </div>
 
-          <button 
+          <button
             onClick={handleSearch}
             disabled={!firstName || phone.length !== 10 || !!phoneError || !state || isLoading}
             className="w-full py-4 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white rounded-xl font-bold text-lg shadow-lg shadow-blue-600/30 disabled:shadow-none transition-all flex items-center justify-center gap-2"
@@ -230,14 +228,14 @@ export default function SearchWidget() {
         </div>
 
       </div>
-      
+
       {/* Search Results */}
       {searchResults && (
-        <SearchResultsTable 
-          results={searchResults} 
-          currentPage={currentPage} 
-          setCurrentPage={setCurrentPage} 
-          itemsPerPage={itemsPerPage} 
+        <SearchResultsTable
+          results={searchResults}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          itemsPerPage={itemsPerPage}
         />
       )}
     </>
